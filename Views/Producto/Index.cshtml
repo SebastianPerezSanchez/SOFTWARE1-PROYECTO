@@ -1,0 +1,42 @@
+@model SOFTWARE1_PROYECTO.Models.Producto
+
+@{
+    ViewData["Title"] = "HECHO POR PIERO SALAZAR ASCENCIO";
+}
+
+<div class="text-center">
+  <h1 class="display-4">Ingreso de mercaderia</h1>
+   <form asp-controller="Producto" asp-action="Enviar">
+            <label>Ingrese el producto</label>
+            <input asp-for="product"/>
+            <br/>
+
+            <label>Ingrese el color del producto</label>
+            <input asp-for="color"/>
+            <br/>
+
+            <label>Ingrese la talla de la prenda</label>
+            <input asp-for="tallas"/>
+            <br/>
+
+            <label>Sexo</label>
+            <input asp-for="sexo"/>
+            <br/>
+
+            <label>Ingrese la cantidad del producto</label>
+            <input asp-for="cantidad"/>
+            <br/>
+
+            <label>Ingrese el modelo del producto</label>
+            <input asp-for="modelo"/>
+            <br/>
+              <input type="submit" value="Enviar">
+   </form>
+  <td>@Html.DisplayNameFor(model => model.Respuesta)</td>
+    <td>@Html.DisplayTextFor(model => model.Respuesta)</td>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>

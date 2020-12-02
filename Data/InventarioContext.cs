@@ -1,6 +1,6 @@
 using SOFTWARE1_PROYECTO.Models;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 namespace SOFTWARE1_PROYECTO.Data
 {
     public class InventarioContext : DbContext
@@ -10,6 +10,7 @@ namespace SOFTWARE1_PROYECTO.Data
             {
             }
         
-        
+                public DbSet<SOFTWARE1_PROYECTO.Models.Producto> Productos { get; set; }
+
     }
 }
