@@ -36,22 +36,6 @@ namespace SOFTWARE1_PROYECTO.Controllers
             var listProductos=_context.Productos.ToList();
             return View(listProductos);
         }
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Create(Producto objProducto){
-            if (ModelState.IsValid)
-            {
-                _context.Add(objProducto);
-                _context.SaveChanges();
-                objProducto.Respuesta = "Gracias estamos en contacto";
-            }
-            
-            return View(objProducto);
-        }
                 
         // GET: Contacto/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -90,7 +74,7 @@ namespace SOFTWARE1_PROYECTO.Controllers
                     return NotFound();
                     
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Listar));
             }
             return View(producto);
         }

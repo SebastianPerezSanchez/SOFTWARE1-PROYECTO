@@ -11,6 +11,7 @@ namespace SOFTWARE1_PROYECTO.Data
             }
         
                 public DbSet<SOFTWARE1_PROYECTO.Models.Producto> Productos { get; set; }
+                public DbSet<SOFTWARE1_PROYECTO.Models.Registrar> Registrar { get; set; }
 
     }
 }

@@ -8,18 +8,21 @@
 </head>
 <body>
 <section class="container">
-    <h1  style="font-family: Rockwell,'Arial Narrow Bold'; font-size:300% ;color:#FF8000 ; padding-top: 30px;text-align: center;" >
+    <h1  style="font-family: Rockwell,'Arial Narrow Bold'; font-size:300% ;color: white ; padding-top: 30px;text-align: center;" >
         Bienvenido al sistema de inventariado de MALK
     </h1>
     <div>
         <div class="login-page">
-        <div style="text-align: center; font-family: Rockwell,'Arial Narrow Bold' ;color:#FF8000 ;font-size:200% ; ">Ingrese para continuar</div>
+        <div style="text-align: center; font-family: Rockwell,'Arial Narrow Bold' ;color: white ;font-size:200% ; ">Ingrese para continuar</div>
         <br>
             <div class="form">
                 <form class="login-form">
                     <input type="text" placeholder="Usuario"/>
                     <input type="password" placeholder="Contraseña"/>
-                    <button>ACCEDER</button>
+                    <button type="submit" value="logear">ACCEDER</button>
+                    <br>  
+                    <br>
+                    <button asp-area="" asp-controller="Home" asp-action="registro">Registrar</button>
                 </form>
             </div>
         </div>

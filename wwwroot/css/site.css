@@ -61,9 +61,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
-  background-image: url(../img/f1.jpg); 
-  background-repeat:no-repeat;
-  background-size:cover; 
+   
 
 }
 .footer {
@@ -82,7 +80,7 @@ body {
 .form {
   position: relative;
   z-index: 1;
-  background: #1b1b1b;
+  background: #FFFFFF;
   max-width: 600px;
   margin: 0 auto 100px;
   padding: 45px;
@@ -92,7 +90,7 @@ body {
 .form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
-  background: #eeececf8;
+  background: #f2f2f2;
   width: 100%;
   border: 0;
   margin: 0 0 15px;
@@ -104,10 +102,10 @@ body {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #FF8000;
+  background: #00aae4;
   width: 100%;
   border: 0;
-  padding: 15px; 
+  padding: 15px;
   color: #FFFFFF;
   font-size: 14px;
   -webkit-transition: all 0.3 ease;
@@ -115,5 +113,28 @@ body {
   cursor: pointer;
 }
 .form button:hover,.form button:active,.form button:focus {
-  background: #dd11f0;
+  background: #00aae4;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+.form .register-form {
+  display: none;
+}
+
+body {
+  background: #f40000; 
+  background: -webkit-linear-gradient(right, #0CB7F2, #7a1b0c);
+  background: -moz-linear-gradient(right, #0CB7F2, #7a1b0c);
+  background: -o-linear-gradient(right, #0CB7F2, #7a1b0c);
+  background: linear-gradient(to left, #0CB7F2, #7a1b0c);
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;      
 }

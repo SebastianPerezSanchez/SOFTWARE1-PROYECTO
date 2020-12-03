@@ -54,6 +54,43 @@ namespace SOFTWARE1_PROYECTO.Data.Migrations
 
                     b.ToTable("t_producto");
                 });
+
+            modelBuilder.Entity("SOFTWARE1_PROYECTO.Models.Registrar", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Apellido")
+                        .HasColumnName("apellido")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Cargo")
+                        .HasColumnName("cargo")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Contraseña")
+                        .HasColumnName("contraseña")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Correo")
+                        .HasColumnName("correo")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DNI")
+                        .HasColumnName("dni")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnName("nombre")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("t_usuario");
+                });
 #pragma warning restore 612, 618
         }
     }

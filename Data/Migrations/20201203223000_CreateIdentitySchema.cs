@@ -24,12 +24,33 @@ namespace SOFTWARE1_PROYECTO.Data.Migrations
                 {
                     table.PrimaryKey("PK_t_producto", x => x.id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "t_usuario",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    dni = table.Column<string>(nullable: true),
+                    nombre = table.Column<string>(nullable: true),
+                    apellido = table.Column<string>(nullable: true),
+                    correo = table.Column<string>(nullable: true),
+                    cargo = table.Column<string>(nullable: true),
+                    contraseña = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_t_usuario", x => x.id);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "t_producto");
+
+            migrationBuilder.DropTable(
+                name: "t_usuario");
         }
     }
 }

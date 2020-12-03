@@ -1,0 +1,35 @@
+@model SOFTWARE1_PROYECTO.Models.Registrar
+
+
+<div class="text-center">
+  <h1 class="display-4">Registrarse</h1>
+   <form asp-controller="Home" asp-action="Registrar">
+            <label>Ingrese su DNI</label>
+            <input asp-for="DNI"/>
+            <br/>
+
+            <label>Ingrese su nombre completo</label>
+            <input asp-for="Nombre"/>
+            <br/>
+
+            <label>Ingrese su apellido completo</label>
+            <input asp-for="Apellido"/>
+            <br/>
+
+            <label>Ingrese su correo</label>
+            <input asp-for="Correo"/>
+            <br/>
+
+            <label>Cargo</label>
+            <input asp-for="Cargo"/>
+            <br/>
+
+
+            <label>Ingrese su contraseña</label>
+            <input asp-for="Contraseña"/>
+            <br/>
+              <input type="submit" value="Registrar">
+   </form>
+  <td>@Html.DisplayNameFor(model => model.Respuesta)</td>
+    <td>@Html.DisplayTextFor(model => model.Respuesta)</td>
+</div>
