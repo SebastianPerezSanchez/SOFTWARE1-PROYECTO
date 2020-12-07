@@ -4,34 +4,39 @@
     ViewData["Title"] = "HECHO POR PIERO SALAZAR ASCENCIO";
 }
 
-<div class="text-center">
+<div class="row">
+    <div class="col-md-4">  
   <h1 class="display-4">Ingreso de mercaderia</h1>
    <form asp-controller="Producto" asp-action="Enviar">
-            <label>Ingrese el producto</label>
-            <input asp-for="product"/>
-            <br/>
 
-            <label>Ingrese el color del producto</label>
-            <input asp-for="color"/>
-            <br/>
-
-            <label>Ingrese la talla de la prenda</label>
-            <input asp-for="tallas"/>
-            <br/>
-
-            <label>Sexo</label>
-         <input  asp-for="sexo" type="radio" name="sexo" value="1">Masculino 
+        <div class="form-group">
+            <label class="control-label">Ingrese el producto</label>
+            <input asp-for="product" class="form-control"/>
+        </div>
+       <div class="form-group">
+            <label class="control-label">Ingrese el color del producto</label>
+            <input asp-for="color" class="form-control"/>
+       </div>
+        <div class="form-group">
+            <label class="control-label">Ingrese la talla de la prenda</label>
+            <input asp-for="tallas" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Sexo</label>
+        </div>
+           <input  asp-for="sexo" type="radio" name="sexo" value="1">Masculino 
             <input  asp-for="sexo" type="radio" name="sexo" value="2">Femenino 
-            <br/>
-
-            <label>Ingrese la cantidad del producto</label>
-            <input asp-for="cantidad"/>
-            <br/>
-
-            <label>Ingrese el modelo del producto</label>
-            <input asp-for="modelo"/>
-            <br/>
-              <input type="submit" value="Enviar">
+       <br>
+       
+       <div class="form-group">
+            <label class="control-label">Ingrese la cantidad del producto</label>
+            <input asp-for="cantidad" class="form-control"/>
+       </div>
+     <div class="form-group">
+            <label class="control-label">Ingrese el modelo del producto</label>
+            <input asp-for="modelo" class="form-control"/>
+     </div>
+              <input class="btn btn-primary" type="submit" value="Enviar">
    </form>
   <td>@Html.DisplayNameFor(model => model.Respuesta)</td>
     <td>@Html.DisplayTextFor(model => model.Respuesta)</td>

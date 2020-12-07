@@ -28,6 +28,60 @@ namespace SOFTWARE1_PROYECTO.Controllers
         {
             return View();
         }
+        public IActionResult Listar()
+        {
+            var listUsu=_context.Registrar.ToList();
+            return View(listUsu);
+        }
+         public IActionResult Delete(int? id)
+        {
+            var usuario = _context.Registrar.Find(id);
+            _context.Registrar.Remove(usuario);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Listar));
+        }
+
+
+          public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var usuario = await _context.Registrar.FindAsync(id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+            return View(usuario);
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("ID,DNI,Nombre,Apellido,Correo,Cargo,Contraseña")] Registrar usuario)
+        {
+            if (id != usuario.ID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(usuario);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return NotFound();
+                    
+                }
+                return RedirectToAction(nameof(Listar));
+            }
+            return View(usuario);
+        }
         
         public IActionResult Registro()
         {

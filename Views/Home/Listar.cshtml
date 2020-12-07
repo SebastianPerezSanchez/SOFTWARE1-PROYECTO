@@ -1,6 +1,6 @@
-@model IEnumerable<SOFTWARE1_PROYECTO.Models.Producto>
+@model IEnumerable<SOFTWARE1_PROYECTO.Models.Registrar>
 
-<h2>Lista de Productos
+<h2>Lista de Usuarios
 </h2>
 
 <p>
@@ -13,13 +13,13 @@
                     #
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.product)
+                    @Html.DisplayNameFor(model => model.DNI)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.color)
+                    @Html.DisplayNameFor(model => model.Nombre)
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.cantidad)
+                    @Html.DisplayNameFor(model => model.Apellido)
                 </th>
         </tr>
     </thead>
@@ -34,13 +34,13 @@
                 <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
             </th>
             <td>
-                @Html.DisplayFor(modelItem => item.product)
+                @Html.DisplayFor(modelItem => item.DNI)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.color)
+                @Html.DisplayFor(modelItem => item.Nombre)
             </td>
            <td>
-                @Html.DisplayFor(modelItem => item.cantidad)
+                @Html.DisplayFor(modelItem => item.Apellido)
             </td>
         </tr>
     }        

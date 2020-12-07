@@ -1,35 +1,44 @@
 @model SOFTWARE1_PROYECTO.Models.Registrar
 
+<div class="row">
+    <div class="col-md-4">  
 
-<div class="text-center">
   <h1 class="display-4">Registrarse</h1>
    <form asp-controller="Home" asp-action="Registrar">
-            <label>Ingrese su DNI</label>
-            <input asp-for="DNI"/>
-            <br/>
+       <div class="form-group">
+            <label class="control-label">Ingrese su DNI</label>
+            <input asp-for="DNI" class="form-control"/>
+       </div>
+      <div class="form-group">
+            <label class="control-label">Ingrese su nodmbre completo</label>
+            <input asp-for="Nombre" class="form-control"/>
+            </div>
+       <div class="form-group">
 
-            <label>Ingrese su nombre completo</label>
-            <input asp-for="Nombre"/>
-            <br/>
+            <label class="control-label">Ingrese su apellido completo</label>
+            <input asp-for="Apellido" class="form-control"/>
+          </div>
+       <div class="form-group">
 
-            <label>Ingrese su apellido completo</label>
-            <input asp-for="Apellido"/>
-            <br/>
+            <label class="control-label">Ingrese su correo</label>
+            <input asp-for="Correo" class="form-control"/>
+          </div>
+       <div class="form-group">
 
-            <label>Ingrese su correo</label>
-            <input asp-for="Correo"/>
-            <br/>
+            <label class="control-label">Cargo</label>
+            <input asp-for="Cargo" class="form-control"/>
+            </div>
 
-            <label>Cargo</label>
-            <input asp-for="Cargo"/>
-            <br/>
+       <div class="form-group">
 
-
-            <label>Ingrese su contraseña</label>
-            <input asp-for="Contraseña"/>
-            <br/>
-              <input type="submit" value="Registrar">
+            <label class="control-label">Ingrese su contraseña</label>
+            <input asp-for="Contraseña" class="form-control"/>
+          </div>
+              <input class="btn btn-primary" type="submit" value="Registrar">
    </form>
+
   <td>@Html.DisplayNameFor(model => model.Respuesta)</td>
     <td>@Html.DisplayTextFor(model => model.Respuesta)</td>
+</div>
+       </div>
 </div>
