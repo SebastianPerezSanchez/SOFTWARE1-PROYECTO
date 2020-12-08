@@ -33,7 +33,8 @@ namespace SOFTWARE1_PROYECTO.Controllers
 
         public IActionResult Listar()
         {
-            var listProductos=_context.Productos.ToList();
+
+            var listProductos=_context.Productos.OrderBy(y => y.product).OrderBy(x => x.modelo).ToList();
             return View(listProductos);
         }
                 
@@ -74,13 +75,16 @@ namespace SOFTWARE1_PROYECTO.Controllers
                     return NotFound();
                     
                 }
+                
+                TempData["prueba02"] = "prueba02";
+
                 return RedirectToAction(nameof(Listar));
+
             }
             return View(producto);
         }
         
 
-        // GET: http://localhost:5000/Contacto/Delete/6 MUESTRA Contacto
         public IActionResult Delete(int? id)
         {
             var producto = _context.Productos.Find(id);
@@ -91,10 +95,15 @@ namespace SOFTWARE1_PROYECTO.Controllers
 
         public IActionResult Enviar(Producto objFormulario)
         {
-                objFormulario.Respuesta = "YA ESTAS REGISTRADO EL PRODUCTO " ;
+              if (ModelState.IsValid)
+                {
                 _context.Add(objFormulario);
                 _context.SaveChanges();
-                return View("Index", objFormulario);
+                TempData["prueba"] = "prueba01";
+                objFormulario.Response = "Gracias. Formulario enviado";
+                return RedirectToAction("Listar");  
+                }
+            return View("index", objFormulario);
         }
     }
 }

@@ -1,48 +1,76 @@
 @model SOFTWARE1_PROYECTO.Models.Producto
 
 @{
-    ViewData["Title"] = "HECHO POR PIERO SALAZAR ASCENCIO";
+    ViewData["Title"] = "Registro de Productos";
 }
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
 
-<div class="row">
-    <div class="col-md-4">  
-  <h1 class="display-4">Ingreso de mercaderia</h1>
-   <form asp-controller="Producto" asp-action="Enviar">
+      <h1 class="display-4">Ingreso de mercaderia</h1>
+      <div align="right">
+        <button  class="btn btn-secondary"  onclick="window.location='@Url.Action("Listar", "Producto")'" >Cancelar</button> 
+        </div>
+      
+      <form asp-controller="Producto" asp-action="Enviar">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="product"  class="control-label"></label>
+                <input asp-for="product" class="form-control"/>
+                <span asp-validation-for="product" class="text-danger"></span>
+            </div class="form-group">
 
-        <div class="form-group">
-            <label class="control-label">Ingrese el producto</label>
-            <input asp-for="product" class="form-control"/>
-        </div>
-       <div class="form-group">
-            <label class="control-label">Ingrese el color del producto</label>
-            <input asp-for="color" class="form-control"/>
-       </div>
-        <div class="form-group">
-            <label class="control-label">Ingrese la talla de la prenda</label>
-            <input asp-for="tallas" class="form-control"/>
-        </div>
-        <div class="form-group">
-            <label class="control-label">Sexo</label>
-        </div>
-           <input  asp-for="sexo" type="radio" name="sexo" value="1">Masculino 
-            <input  asp-for="sexo" type="radio" name="sexo" value="2">Femenino 
-       <br>
-       
-       <div class="form-group">
-            <label class="control-label">Ingrese la cantidad del producto</label>
-            <input asp-for="cantidad" class="form-control"/>
-       </div>
-     <div class="form-group">
-            <label class="control-label">Ingrese el modelo del producto</label>
-            <input asp-for="modelo" class="form-control"/>
-     </div>
-              <input class="btn btn-primary" type="submit" value="Enviar">
-   </form>
-  <td>@Html.DisplayNameFor(model => model.Respuesta)</td>
-    <td>@Html.DisplayTextFor(model => model.Respuesta)</td>
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
+            <div class="form-group">
+                <label asp-for="color"  class="control-label"></label>
+                <input asp-for="color" class="form-control"/>
+                <span asp-validation-for="color" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+              <label asp-for="tallas" class="control-label"></label> 
+              <input asp-for="tallas" class="form-control" />
+              <span asp-validation-for="tallas" class="text-danger"></span>
+
+            </div>
+
+            <fieldset class="form-group">
+                <div class="row">
+                    <label asp-for="sexo" class="col-form-label col-sm-2 pt-0"></label>
+
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <label><input  asp-for="sexo" type="radio" name="sexo" value="1">Masculino</label>
+                    </div>
+                    
+                    <div class="form-check">
+                      <label><input  asp-for="sexo" type="radio" name="sexo" value="2">Femenino</label>
+                    </div>
+                  </div>
+                </div>
+                <span asp-validation-for="sexo" class="text-danger"></span>
+            </fieldset>
+
+            <div class="form-group">
+              <label asp-for="cantidad"  class="control-label"></label>
+              <input asp-for="cantidad" class="form-control"/>
+              <span asp-validation-for="cantidad" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+              <label asp-for="modelo"  class="control-label"></label>
+              <input asp-for="modelo" class="form-control"/>
+              <span asp-validation-for="modelo" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group text-center" >
+              <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+
+      </form>
+
+
+    </div>
+  </div>
