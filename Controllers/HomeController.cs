@@ -28,6 +28,11 @@ namespace SOFTWARE1_PROYECTO.Controllers
         {
             return View();
         }
+
+         public IActionResult Login()
+        {
+            return View();
+        }
         public IActionResult Listar()
         {
             var listUsu=_context.Registrar.ToList();
@@ -95,7 +100,7 @@ namespace SOFTWARE1_PROYECTO.Controllers
                 _context.SaveChanges();            
                 objRegistrar.Respuesta="Se registro correctamente";
             }
-            return View("Index",objRegistrar);
+            return View("Login",objRegistrar);
         }
     
     }
