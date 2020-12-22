@@ -1,12 +1,16 @@
-@model IEnumerable<SOFTWARE1_PROYECTO.Models.Registrar>
+@model IEnumerable<SOFTWARE1_PROYECTO.Models.Cliente>
 
-<div class="container">
-<h2>Lista de Usuarios
-</h2>
+@{
+    ViewData["Title"] = "Clientes";
+}
+
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+<div class="container">
+<h2>Lista de Clientes</h2>
+
 <p>
-    <button class="btn btn-primary" onclick="window.location='@Url.Action("Registro", "Home")'">Registrar</button>
+    <button class="btn btn-primary" onclick="window.location='@Url.Action("Index", "Cliente")'">Registrar</button>
 </p>
 <table class="table table-hover table-dark">
     <thead class="thead-dark">
@@ -15,13 +19,19 @@
                     #
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.DNI)
-                </th>
-                <th scope="col">
                     @Html.DisplayNameFor(model => model.Nombre)
                 </th>
                 <th scope="col">
                     @Html.DisplayNameFor(model => model.Apellido)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.Correo)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.direccion)
+                </th>
+                  <th scope="col">
+                    @Html.DisplayNameFor(model => model.compras)
                 </th>
         </tr>
     </thead>
@@ -32,23 +42,32 @@
     {
         <tr>
             <th scope="row">
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>| 
+                <a asp-action="Delete" asp-route-id="@item.ID" id="delete">Delete</a>
             </th>
-            <td>
-                @Html.DisplayFor(modelItem => item.DNI)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
-           <td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Apellido)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correo)
+            </td>
+           <td>
+                @Html.DisplayFor(modelItem => item.direccion)
+            </td>
+              <td>
+                @Html.DisplayFor(modelItem => item.compras)
+            </td>
+
         </tr>
     }        
     </tbody>    
 </table>
 </div>
+
+
 @if ((String)TempData["prueba"] == "prueba01")
 {
     <input value="hola" id="hola01" type="hidden">
@@ -67,7 +86,7 @@
         
             Swal.fire(
                 'Registro exitoso',
-                'El producto ha sido registrado exitosamente',
+                'El Cliente ha sido registrado exitosamente',
                 'success'
             )
   
@@ -85,7 +104,7 @@
 
             Swal.fire(
                 'Editado correctamente',
-                'El producto se ha editado correctamente',
+                'El Cliente se ha editado correctamente',
                 'success'
             )
         }

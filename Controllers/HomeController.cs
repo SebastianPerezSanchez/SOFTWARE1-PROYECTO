@@ -83,6 +83,7 @@ namespace SOFTWARE1_PROYECTO.Controllers
                     return NotFound();
                     
                 }
+                TempData["prueba02"] = "prueba02";
                 return RedirectToAction(nameof(Listar));
             }
             return View(usuario);
@@ -97,8 +98,12 @@ namespace SOFTWARE1_PROYECTO.Controllers
         public IActionResult Registrar(Registrar objRegistrar){
             if(ModelState.IsValid){
                 _context.Add(objRegistrar);
-                _context.SaveChanges();            
+                _context.SaveChanges();   
+                                TempData["prueba"] = "prueba01";
+         
                 objRegistrar.Respuesta="Se registro correctamente";
+                                return RedirectToAction("Listar");  
+
             }
             return View("Login",objRegistrar);
         }

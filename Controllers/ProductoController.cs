@@ -105,5 +105,55 @@ namespace SOFTWARE1_PROYECTO.Controllers
                 }
             return View("index", objFormulario);
         }
+
+        public async Task<IActionResult> EntradaProducto(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var producto = await _context.Productos.FindAsync(id);
+            if (producto == null)
+            {
+                return NotFound();
+            }
+            return View(producto);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EntradaProducto(int id, [Bind("ID,product,color,tallas,sexo,cantidad,modelo")] Producto producto)
+        {
+            if (id != producto.ID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var listarProductos = _context.Productos.Where(x => x.ID == id).Select(y => y.cantidad).ToList();
+                    int listarP = int.Parse(listarProductos.First().ToString());
+
+                    
+                    producto.cantidad = producto.cantidad + listarP;
+                    _context.Productos.Attach(producto);
+                    _context.Entry(producto).Property(x => x.cantidad).IsModified = true;
+                    await _context.SaveChangesAsync();  
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return NotFound();
+                    
+                }
+                
+                return RedirectToAction(nameof(Listar));
+
+            }
+            return View(producto);
+        }
+
     }
 }
