@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,8 +10,8 @@ namespace SOFTWARE1_PROYECTO.Models
     public class Producto
     {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    [Display(Name="Identificador")] 
-    [Column("id")]
+    [Display(Name="Identificador")]
+    [Key]
     public int ID { get; set; }
 
     [Required(ErrorMessage="Debe ingresar el nombre del producto a registrar")]
@@ -45,6 +46,9 @@ namespace SOFTWARE1_PROYECTO.Models
     [Display(Name="Modelo del producto")] 
     [Column("modelo")]
     public string modelo { get; set; }
+
+    public ICollection<EntradaProducto> EntradaProductos { get; set; }
+
     
 
     [NotMapped]
