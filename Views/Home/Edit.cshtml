@@ -3,11 +3,17 @@
 @{
     ViewData["Title"] = "Usuario";
 }
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <div class="row justify-content-center">
     <div class="col-md-4">  
 
      
         <h1 class="display-4">Editar Usuario</h1>
+        <div align="right">
+        <button  class="btn btn-secondary"  onclick="window.location='@Url.Action("Listar", "Home")'" >Cancelar</button> 
+        </div>
         <form asp-controller="Home" asp-action="Edit">
               <div class="form-group">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -52,3 +58,38 @@
     </div>
 </div>
 </div>
+
+<script>
+    document.querySelector('#Editar').addEventListener('submit', function(e) {
+      var form = this;
+      
+      e.preventDefault();
+      
+      swal({
+          title: "¿Está seguro de la acción?",
+          text: "Esto cambiará los datos del Usuario",
+          icon: "warning",
+          buttons: [
+            'Cancelar',
+            'Continuar'
+          ],
+          dangerMode: true,
+        }).then(function(isConfirm) {
+          if (isConfirm) {
+           
+              form.submit();
+          
+          } else {
+            swal("Acción cancelada", "El Usuario no se ha modificado", "error");
+          }
+        });
+    });
+
+    
+  </script>
+  
+  <style>
+    .swal-button--confirm {
+      background-color: #DD6B55;
+    }
+  </style>
