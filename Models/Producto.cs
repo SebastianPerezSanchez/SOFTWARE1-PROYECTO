@@ -11,7 +11,7 @@ namespace SOFTWARE1_PROYECTO.Models
     {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Display(Name="Identificador")]
-    [Key]
+    [Column("id")]
     public int ID { get; set; }
 
     [Required(ErrorMessage="Debe ingresar el nombre del producto a registrar")]
