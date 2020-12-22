@@ -1,0 +1,96 @@
+@model SOFTWARE1_PROYECTO.Models.Cliente
+
+@{
+    ViewData["Title"] = "Registro de Cliente";
+}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<div class="container">
+  <div class="row justify-content-center">
+    <div>
+
+      <h1 class="display-4">Registrar Cliente</h1>
+      <div align="right">
+        <button  class="btn btn-secondary"  onclick="window.location='@Url.Action("Listar", "Cliente")'" >Cancelar</button> 
+        </div>
+      
+      <form asp-controller="Cliente" asp-action="Enviar">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DNI"  class="control-label"></label>
+                <input asp-for="DNI" class="form-control"/>
+                <span asp-validation-for="DNI" class="text-danger"></span>
+            </div class="form-group">
+
+            <div class="form-group">
+                <label asp-for="Nombre"  class="control-label"></label>
+                <input asp-for="Nombre" class="form-control"/>
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+              <label asp-for="Apellido" class="control-label"></label> 
+              <input asp-for="Apellido" class="form-control" />
+              <span asp-validation-for="Apellido" class="text-danger"></span>
+
+            </div>
+
+            <fieldset class="form-group">
+                <div class="row">
+                    <label asp-for="sexo" class="col-form-label col-sm-2 pt-0"></label>
+
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <label><input  asp-for="sexo" type="radio" name="sexo" value="Masculino">Masculino</label>
+                    </div>
+                    
+                    <div class="form-check">
+                      <label><input  asp-for="sexo" type="radio" name="sexo" value="Femenino">Femenino</label>
+                    </div>
+                  </div>
+                </div>
+                <span asp-validation-for="sexo" class="text-danger"></span>
+            </fieldset>
+
+            <div class="form-group">
+              <label asp-for="Correo"  class="control-label"></label>
+              <input asp-for="Correo" class="form-control"/>
+              <span asp-validation-for="Correo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+              <label asp-for="distrito"  class="control-label"></label>
+              <input asp-for="distrito" class="form-control"/>
+              <span asp-validation-for="distrito" class="text-danger"></span>
+
+            </div>
+
+         <div class="form-group">
+              <label asp-for="direccion"  class="control-label"></label>
+              <input asp-for="direccion" class="form-control"/>
+              <span asp-validation-for="direccion" class="text-danger"></span>
+
+            </div>
+
+             <div class="form-group">
+              <label asp-for="celular"  class="control-label"></label>
+              <input asp-for="celular" class="form-control"/>
+              <span asp-validation-for="celular" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+              <label asp-for="compras"  class="control-label"></label>
+              <input asp-for="compras" class="form-control"/>
+              <span asp-validation-for="compras" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group text-center" >
+              <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+
+      </form>
+
+
+    </div>
+  </div>
