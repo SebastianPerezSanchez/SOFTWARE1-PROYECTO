@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SOFTWARE1_PROYECTO.Models;
 using SOFTWARE1_PROYECTO.Data;
-
 namespace SOFTWARE1_PROYECTO.Controllers
 {
     public class ProductoController : Controller
@@ -31,11 +30,34 @@ namespace SOFTWARE1_PROYECTO.Controllers
             return View();
         }
 
-        public IActionResult Listar()
+        public async Task<IActionResult> Listar(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
+            ViewBag.CurrentSort = sortOrder;
+                var productos = from s in _context.Productos
+                    select s;
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    productos = productos.Where(s => s.product.Contains(searchString)
+                                || s.color.Contains(searchString)  || s.tallas.Contains(searchString) || s.modelo.Contains(searchString)
+                                || s.sexo.Contains(searchString) || s.cantidad.ToString().Contains(searchString));
+                }
 
-            var listProductos=_context.Productos.OrderBy(y => y.product).OrderBy(x => x.modelo).ToList();
-            return View(listProductos);
+                if (searchString != null)
+                {
+                    pageNumber  = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
+
+                ViewBag.CurrentFilter = searchString;
+                   
+
+                int pageSize = 10;
+                    return View(await PaginatedList<Producto>.CreateAsync(productos.AsNoTracking(), pageNumber ?? 1, pageSize));
+
+       
         }
                 
         // GET: Contacto/Edit/5
@@ -121,6 +143,21 @@ namespace SOFTWARE1_PROYECTO.Controllers
             return View(producto);
         }
 
+        public async Task<IActionResult> SalidaProducto(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var producto = await _context.Productos.FindAsync(id);
+            if (producto == null)
+            {
+                return NotFound();
+            }
+            return View(producto);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EntradaProducto(int id, [Bind("ID,product,color,tallas,sexo,cantidad,modelo")] Producto producto)
@@ -139,6 +176,40 @@ namespace SOFTWARE1_PROYECTO.Controllers
 
                     
                     producto.cantidad = producto.cantidad + listarP;
+                    _context.Productos.Attach(producto);
+                    _context.Entry(producto).Property(x => x.cantidad).IsModified = true;
+                    await _context.SaveChangesAsync();  
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return NotFound();
+                    
+                }
+                
+                return RedirectToAction(nameof(Listar));
+
+            }
+            return View(producto);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SalidaProducto(int id, [Bind("ID,product,color,tallas,sexo,cantidad,modelo")] Producto producto)
+        {
+            if (id != producto.ID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var listarProductos = _context.Productos.Where(x => x.ID == id).Select(y => y.cantidad).ToList();
+                    int listarP = int.Parse(listarProductos.First().ToString());
+
+                    
+                    producto.cantidad = listarP - producto.cantidad;
                     _context.Productos.Attach(producto);
                     _context.Entry(producto).Property(x => x.cantidad).IsModified = true;
                     await _context.SaveChangesAsync();  

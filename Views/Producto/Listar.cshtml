@@ -1,4 +1,7 @@
-@model IEnumerable<SOFTWARE1_PROYECTO.Models.Producto>
+
+@model PaginatedList<SOFTWARE1_PROYECTO.Models.Producto>
+
+
 
 @{
     ViewData["Title"] = "Productos";
@@ -12,6 +15,13 @@
 <p>
     <button class="btn btn-primary" onclick="window.location='@Url.Action("Index", "Producto")'">Registrar</button>
 </p>
+@using (Html.BeginForm("Listar", "Producto", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table table-hover table-dark">
     <thead class="thead-dark">
         <tr>
@@ -19,20 +29,23 @@
                     #
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.product)
+                   Producto
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.modelo)
+                    Modelo
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.color)
+                   Color
                 </th>
                 <th scope="col">
-                    @Html.DisplayNameFor(model => model.cantidad)
+                   Talla
+                </th>
+                <th scope="col">
+                   Cantidad
                 </th>
 
                 <th scope="col">
-                    .
+                    Entrada/Salida
                 </th>
         </tr>
     </thead>
@@ -55,18 +68,41 @@
             <td>
                 @Html.DisplayFor(modelItem => item.color)
             </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.tallas)
+            </td>
            <td>
                 @Html.DisplayFor(modelItem => item.cantidad)
             </td>
 
             <td>
-                <a asp-action="EntradaProducto" asp-route-id="@item.ID">Ingresar Producto</a>
+                <a asp-action="EntradaProducto" asp-route-id="@item.ID">Ingreso</a> |
+                <a asp-action="SalidaProducto" asp-route-id="@item.ID">Salida</a>
             </td>
 
         </tr>
     }        
     </tbody>    
 </table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Listar"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-info @prevDisabled">
+    Previous
+</a>
+<a asp-action="Listar"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-info @nextDisabled">
+    Next
+</a>
 </div>
 
 

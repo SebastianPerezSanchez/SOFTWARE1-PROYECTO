@@ -1,0 +1,125 @@
+@model SOFTWARE1_PROYECTO.Models.Producto
+
+
+@{
+    ViewData["Title"] = "Edición de Producto";
+}
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<div class="container">
+<div class="row justify-content-center">
+    <div>
+        <h1 class="display-4">Agregar Salida del Producto</h1>
+
+        <div class="container">
+        <table class="table table-hover table-dark">
+            <thead class="thead-dark">
+                <tr>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model => model.product)
+                        </th>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model => model.modelo)
+                        </th>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model => model.color)
+                        </th>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model => model.cantidad)
+                        </th>
+                </tr>
+            </thead>
+                <tr>
+                        <td scope="col">
+                          @Html.DisplayFor(model => model.product)
+                        </td>
+
+                        <td scope="col">
+                          @Html.DisplayFor(model => model.modelo)
+                        </td>
+
+                        <td scope="col">
+                          @Html.DisplayFor(model => model.color)
+                        </td>
+                        
+                        <td scope="col">
+                          @Html.DisplayFor(model => model.cantidad)
+                        </td>
+
+                </tr>
+            <tbody>
+              
+            </tbody>
+        </table> 
+
+        </div>
+        <div align="right">
+        <button  class="btn btn-secondary"  onclick="window.location='@Url.Action("Listar", "Producto")'" >Cancelar</button> 
+        </div>
+
+        <form asp-controller="Producto" asp-action="SalidaProducto" id="Editar">
+            <input type="hidden" asp-for="ID" />
+            <input type="hidden" asp-for="product" class="form-control" />
+            <input type="hidden" asp-for="color" class="form-control" />
+            <input type="hidden" asp-for="tallas" class="form-control" />
+            <input type="hidden" asp-for="sexo">
+            <input type="hidden" asp-for="modelo" class="form-control" />
+          
+              
+            <div class="form-group">
+                <label class="control-label">Cantidad de productos a Retirar</label>
+                <input asp-for="cantidad" class="form-control" />
+                <span asp-validation-for="cantidad" class="text-danger"></span>
+            </div>      
+       
+                
+             
+             
+            <div class="form-group" align="center">
+                 <button type="submit" class="btn btn-primary">Retirar</button> 
+          
+
+            </div>                
+
+        </form>
+            
+    
+    </div>
+</div>
+</div>
+
+<script>
+    document.querySelector('#Editar').addEventListener('submit', function(e) {
+      var form = this;
+      
+      e.preventDefault();
+      
+      swal({
+          title: "¿Está seguro de la acción?",
+          text: "Esto cambiará los datos del producto",
+          icon: "warning",
+          buttons: [
+            'Cancelar',
+            'Continuar'
+          ],
+          dangerMode: true,
+        }).then(function(isConfirm) {
+          if (isConfirm) {
+           
+              form.submit();
+          
+          } else {
+            swal("Acción cancelada", "El producto no se ha modificado", "error");
+          }
+        });
+    });
+
+    
+  </script>
+  
+  <style>
+    .swal-button--confirm {
+      background-color: #DD6B55;
+    }
+  </style>
