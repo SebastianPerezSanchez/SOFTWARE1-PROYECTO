@@ -1,0 +1,161 @@
+
+@model PaginatedList<SOFTWARE1_PROYECTO.Models.RegistrarM>
+
+
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<div class="container">
+<h2>Lista de Productos</h2>
+
+<p>
+    <button class="btn btn-primary" onclick="window.location='@Url.Action("Index", "Producto")'">Registrar</button>
+</p>
+@using (Html.BeginForm("ListarM", "Home", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table table-hover table-dark">
+    <thead class="thead-dark">
+        <tr>
+                <th scope="col">
+                    #
+                </th>
+                <th scope="col">
+                   Nombre
+                </th>
+                <th scope="col">
+                    Codigo
+                </th>
+                <th scope="col">
+                   Color
+                </th>
+                <th scope="col">
+                   Talla36
+                </th>
+                <th scope="col">
+                   Talla37
+                </th>
+                <th scope="col">
+                   Talla38
+                </th>
+                <th scope="col">
+                   Talla39
+                </th>
+                <th scope="col">
+                    Entrada/Salida
+                </th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th scope="row">
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>| 
+                <a asp-action="Delete" asp-route-id="@item.ID" id="delete">Delete</a>
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Talla36)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Talla37)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Talla38)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Talla39)
+            </td>
+           
+            <td>
+                <a asp-action="EntradaProducto" asp-route-id="@item.ID">Ingreso</a> |
+                <a asp-action="SalidaProducto" asp-route-id="@item.ID">Salida</a>
+            </td>
+
+        </tr>
+    }        
+    </tbody>    
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="ListarM"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-info @prevDisabled">
+    Previous
+</a>
+<a asp-action="ListarM"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-info @nextDisabled">
+    Next
+</a>
+</div>
+
+
+@if ((String)TempData["prueba"] == "prueba01")
+{
+    <input value="hola" id="hola01" type="hidden">
+}
+
+@if ((String)TempData["prueba02"] == "prueba02") 
+{
+    <input value="hola" id="prueba02" type="hidden">
+}
+
+    <script>
+        
+        var x = document.getElementById('hola01').value;
+
+        if(x == "hola") {
+        
+            Swal.fire(
+                'Registro exitoso',
+                'El producto ha sido registrado exitosamente',
+                'success'
+            )
+  
+        }
+
+       
+
+    </script>
+
+   <script>
+        
+        var y = document.getElementById('prueba02').value;
+
+        if(y == "hola") {
+
+            Swal.fire(
+                'Editado correctamente',
+                'El producto se ha editado correctamente',
+                'success'
+            )
+        }
+   </script> 
+

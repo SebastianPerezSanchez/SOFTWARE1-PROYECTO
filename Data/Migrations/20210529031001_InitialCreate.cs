@@ -29,6 +29,67 @@ namespace SOFTWARE1_PROYECTO.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "t_hombre",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    nombre = table.Column<string>(nullable: true),
+                    codigo = table.Column<string>(nullable: true),
+                    color = table.Column<string>(nullable: true),
+                    talla39 = table.Column<int>(nullable: false),
+                    talla40 = table.Column<int>(nullable: false),
+                    talla41 = table.Column<int>(nullable: false),
+                    talla42 = table.Column<int>(nullable: false),
+                    talla43 = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_t_hombre", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "t_mujer",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    nombre = table.Column<string>(nullable: true),
+                    codigo = table.Column<string>(nullable: true),
+                    color = table.Column<string>(nullable: true),
+                    talla36 = table.Column<int>(nullable: false),
+                    talla37 = table.Column<int>(nullable: false),
+                    talla38 = table.Column<int>(nullable: false),
+                    talla39 = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_t_mujer", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "t_nino",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    nombre = table.Column<string>(nullable: true),
+                    codigo = table.Column<string>(nullable: true),
+                    color = table.Column<string>(nullable: true),
+                    sexo = table.Column<string>(nullable: true),
+                    talla25 = table.Column<int>(nullable: false),
+                    talla26 = table.Column<int>(nullable: false),
+                    talla27 = table.Column<int>(nullable: false),
+                    talla28 = table.Column<int>(nullable: false),
+                    talla29 = table.Column<int>(nullable: false),
+                    talla30 = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_t_nino", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "t_producto",
                 columns: table => new
                 {
@@ -97,6 +158,15 @@ namespace SOFTWARE1_PROYECTO.Migrations
 
             migrationBuilder.DropTable(
                 name: "t_EntradaProducto");
+
+            migrationBuilder.DropTable(
+                name: "t_hombre");
+
+            migrationBuilder.DropTable(
+                name: "t_mujer");
+
+            migrationBuilder.DropTable(
+                name: "t_nino");
 
             migrationBuilder.DropTable(
                 name: "t_usuario");

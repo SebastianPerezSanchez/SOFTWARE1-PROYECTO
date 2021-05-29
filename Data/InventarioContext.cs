@@ -10,8 +10,15 @@ namespace SOFTWARE1_PROYECTO.Data
             {
             }
         
-                public DbSet<SOFTWARE1_PROYECTO.Models.Producto> Productos { get; set; }
+                 public DbSet<SOFTWARE1_PROYECTO.Models.Producto> Productos { get; set; }
+                //Después de utilizar el Registrar, se debe eliminar y trabajar con RegistrarH, RegistrarM, Registrar N.
                 public DbSet<SOFTWARE1_PROYECTO.Models.Registrar> Registrar { get; set; }
+
+                public DbSet<SOFTWARE1_PROYECTO.Models.RegistrarH> RegistrarH { get; set; }
+
+                public DbSet<SOFTWARE1_PROYECTO.Models.RegistrarM> RegistrarM { get; set; }
+
+                public DbSet<SOFTWARE1_PROYECTO.Models.RegistrarN> RegistrarN { get; set; }
                 public DbSet<SOFTWARE1_PROYECTO.Models.EntradaProducto> EntradaProductos { get; set; }
                 public DbSet<SOFTWARE1_PROYECTO.Models.Cliente> Cliente { get; set; }
 
